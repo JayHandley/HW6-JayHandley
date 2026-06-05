@@ -1,15 +1,20 @@
 package list;
 
+/**
+ * For creating LinkedLists using comparable and list
+ */
 public class LinkedList<T extends Comparable<T>> implements List<T> {
 
  /**
-  *
-  *
+  * For creating blank nodes for creating or affecting linkedlists
   */
  private static class Node<T> {
   public T data;
   public Node<T> next;
 
+  /**
+  * For creating data nodes to store data for creating or affecting linkedlists
+  */
   public Node(T data, Node<T> next) {
    this.data = data;
    this.next = next;
@@ -21,6 +26,10 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
    this(data, null);
   }
 
+  /**
+  * Overrides toString to give give null if the linkedlist is blank
+  * @return the toString "null"
+  */
   @Override
   public String toString() {
    if (data == null) {
@@ -32,8 +41,8 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
  }
 
  /**
-  *
-  *
+  * Overrides toString to give useful information for testing list commands
+  * @return the list data, size, head, and tail.
   */
  @Override
  public String toString() {
@@ -60,7 +69,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
  private Node<T> tail;
 
  /**
-  *
+  * For creating a new blank LinkedList
   */
  public LinkedList() {
   this.size = 0;
@@ -69,8 +78,8 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
  }
 
  /**
-  *
-  *
+  * To check if the LinkedList is empty
+  * @return true if empty, false if not
   */
  @Override
  public boolean isEmpty() {
@@ -78,8 +87,8 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
  }
 
  /**
-  *
-  *
+  * To return the size of the LinkedList
+  * @return the size
   */
  @Override
  public int size() {
@@ -87,8 +96,8 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
  }
 
  /**
-  *
-  *
+  * To add an element to the end of the LinkedList
+  * @param element to add
   */
  @Override
  public void add(T element) {
@@ -100,8 +109,8 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
  }
 
  /**
-  *
-  *
+  * To remove an specific element from the LinkedList
+  * @param element to be removed
   */
  @Override
  public void remove(T element) {
@@ -128,9 +137,9 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
  }
 
  /**
-  *
-  *
-  *
+  * To get the data of a specific index in the LinkedList
+  * @param index to look at
+  * @return the data of said index
   */
  @Override
  public T get(int index) {
@@ -151,9 +160,9 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
  }
 
  /**
-  *
-  *
-  *
+  * To remove a specific index from the LinkedList
+  * @param index to remove
+  * @return the data of the removed index
   */
  @Override
  public T remove(int index) {
@@ -185,11 +194,11 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
  }
 
  /**
-  *
-  *
-  *
+  * To see if the LinkedList contains a specific element
+  * @param element to search for
+  * @return true if included, false if not
   */
- @Override //DO RETURN TRUE AND FALSE NO CONTAINS
+ @Override
  public boolean contains (T element) {
   Node<T> cur = head.next;
   while (cur != null) {
@@ -202,9 +211,9 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
  }
 
  /**
-  *
-  *
-  *
+  * To see the first index of a specific element
+  * @param element to search for
+  * @return the index of the element. Is 0 if not on the LinkedList
   */
  @Override
  public int indexOf (T element) {
@@ -222,9 +231,9 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
  }
 
  /**
-  *
-  *
-  *
+  * To set an index to a specific element
+  * @param index to set
+  * @param element to be set to
   */
  @Override
  public void set(int index, T element) {
@@ -254,7 +263,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
  }
 
  /**
-  *
+  * To remove all data from the LinkedList
   */
  @Override
  public void clear() {

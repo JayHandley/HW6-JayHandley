@@ -4,11 +4,22 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+* Represents a Vanguard class fighter
+*/
 public class Vanguard extends Hero {
 
     final int shieldHealth;
     final int DPS;
 
+    /**
+    * Creates a Vanguard fighter
+    * @param name the name of the fighter
+    * @param team the team of the fighter
+    * @param maxHP the maximum health of the fighter
+    * @param shieldHealth the amount the shield can block
+    * @param DPS the amount of damage the fighter does
+    */
     public Vanguard(String name, String team, int maxHP, int shieldHealth, int DPS) {
         super(name, team, maxHP);
         this.currentHP = maxHP;
@@ -16,11 +27,19 @@ public class Vanguard extends Hero {
         this.DPS = DPS;
     }
 
+    /**
+    * Attacks another fighter
+    * @param target the fighter being attacked
+    */
     public void attack(Hero target) {
         System.out.println(getName() + " attacked " + target);
         target.takeDamage(this.DPS);
     }
 
+    /**
+    * Overrides damage from another fighter
+    * @param damage the damage being dealt
+    */
     @Override void takeDamage(int damage) {
         if (damage < shieldHealth) {
             System.out.println(getName() + " blocked the damage.");
@@ -33,11 +52,20 @@ public class Vanguard extends Hero {
         }
     }
 
+    /**
+    * Creates a string describe the fighter
+    * @return the string created
+    */
     @Override
     public String toString() {
         return (getName() + " is a strong Hero with a lots of health.");
     }
 
+    /**
+    * Checks if two Vanguards are the same
+    * @param obj the object to be compared to
+    * @return true if they are the same, false if not
+    */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -74,6 +102,10 @@ public class Vanguard extends Hero {
         return true;
     }
 
+    /**
+    * Creates a unique number for the Vanguard based on its current data
+    * @return the unique number
+    */
     @Override
     public int hashCode() {
         int res = getName().hashCode();
@@ -84,6 +116,9 @@ public class Vanguard extends Hero {
         return res;
     }
 
+    /**
+    * Creates the "Vanguard.CSV" file if it doesn't exist and then writes the information of the Vanguard to the next line
+    */
     @Override
     public void toCsv() {
         File openFile = new File("Vanguard.CSV");

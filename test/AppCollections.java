@@ -5,17 +5,26 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Collections;
 
+/**
+ * Creates lists to store universes
+ */
 public class AppCollections {
     public static void main(String[] args) {
 
         ArrayList<Universe> multiverse = new ArrayList<Universe>();
         HashSet<Universe> uniqueMultiverse = new HashSet<Universe>();
 
+        /**
+         * Creates the multiverse
+         */
         System.out.println("Creating Multiverse");
         for(int i = 1; i <= 1000; i++) {
             multiverse.add(new Universe());
         }
 
+        /**
+         * Returns the total of universes and sorts them
+         */
         System.out.println("Total universes in multiverse: " + multiverse.size());
         System.out.println("Sorted universes by ID: ");
         Collections.sort(multiverse);
@@ -23,12 +32,17 @@ public class AppCollections {
             System.out.println(u.getID());
         }
 
-
+        /**
+         * Creates a multiverse with only unique universes
+         */
         System.out.println("Creating Multiverse with Unique Universes");
         for(int i = 1; i <= 1000; i++) {
             uniqueMultiverse.add(new Universe());
         }
 
+        /**
+         * Returns the total of unique universes
+         */
         System.out.println("Total universes in unique multiverse: " + uniqueMultiverse.size());
 
     }

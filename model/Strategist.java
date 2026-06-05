@@ -3,17 +3,30 @@ package model;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
+/**
+* Represents a Strategist class fighter
+*/
 public class Strategist extends Hero {
 
     final int healing;
 
+    /**
+    * Creates a Strategist fighter
+    * @param name the name of the fighter
+    * @param team the team of the fighter
+    * @param maxHP the maximum health of the fighter
+    * @param healing the amount of healing the fighter does
+    */
     public Strategist(String name, String team, int maxHP, int healing) {
         super(name, team, maxHP);
         this.currentHP = maxHP;
         this.healing = healing;
     }
 
+    /**
+    * Heals another fighter
+    * @param target the fighter being healed
+    */
     public void heal(Hero name) {
         System.out.println(getName() + " healed " + name + ".");
         if((name.getCurrentLife() + this.healing) <= name.getMaxHealth()) {
@@ -23,6 +36,9 @@ public class Strategist extends Hero {
         }
     }
 
+    /**
+    * Heals itself
+    */
     public void healSelf() {
         System.out.println(getName() + " healed themself.");
         if((this.getCurrentLife() + this.healing) <= this.getMaxHealth()) {
@@ -32,11 +48,20 @@ public class Strategist extends Hero {
         }
     }
 
+    /**
+    * Creates a string describe the fighter
+    * @return the string created
+    */
     @Override
     public String toString() {
         return (getName() + " is a supporting Hero that can heal.");
     }
 
+    /**
+    * Checks if two Strategists are the same
+    * @param obj the object to be compared to
+    * @return true if they are the same, false if not
+    */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -69,6 +94,10 @@ public class Strategist extends Hero {
         return true;
     }
 
+    /**
+    * Creates a unique number for the Strategist based on its current data
+    * @return the unique number
+    */
     @Override
     public int hashCode() {
         int res = getName().hashCode();
@@ -78,6 +107,9 @@ public class Strategist extends Hero {
         return res;
     }
 
+    /**
+    * Creates the "Strategist.CSV" file if it doesn't exist and then writes the information of the Strategist to the next line
+    */
     @Override
     public void toCsv() {
         File openFile = new File("Strategist.CSV");

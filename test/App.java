@@ -2,8 +2,14 @@ package test;
 
 import model.*;
 
+/**
+ * Runs a battle simulation between team blue and team red
+ */
 public class App {
     public static void main(String[] args) {
+        /**
+         * Creates the fighters for each team
+         */
         Strategist Jeff = new Strategist("Jeff", "Blue", 250, 150);
         Strategist Loki = new Strategist("Loki", "Red", 275, 100);
         Duelist Punisher = new Duelist("Punisher", "Blue", 300, false, 360);
@@ -12,6 +18,9 @@ public class App {
         Vanguard DrStrange = new Vanguard("DrStrange", "Red", 675, 80, 16);
         Arena Asgard = new Arena(0, 0);
 
+        /**
+         * Simulates the battle
+         */
         IronMan.fly();
         Punisher.attack(DrStrange);
         DrStrange.attack(Punisher);

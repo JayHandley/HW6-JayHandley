@@ -4,12 +4,23 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+* Represents a Duelist class fighter
+*/
 public class Duelist extends Hero {
 
     final boolean fly;
     final int DPS;
     public int flyHash = 0;
 
+    /**
+    * Creates a Duelist fighter
+    * @param name the name of the fighter
+    * @param team the team of the fighter
+    * @param maxHP the maximum health of the fighter
+    * @param fly whether the fighter can fly or not
+    * @param DPS the amount of damage the fighter does
+    */
     public Duelist(String name, String team, int maxHP, boolean fly, int DPS) {
         super(name, team, maxHP);
         this.currentHP = maxHP;
@@ -17,17 +28,28 @@ public class Duelist extends Hero {
         this.DPS = DPS;
     }
 
+    /**
+    * Starts flying if the fighter can
+    */
     public void fly() {
         if(this.fly) {
             System.out.println(getName() + " is flying.");
         }
     }
 
+    /**
+    * Attacks another fighter
+    * @param target the fighter being attacked
+    */
     public void attack(Hero target) {
         System.out.println(getName() + " attacked " + target);
         target.takeDamage(this.DPS);
     }
 
+    /**
+    * Overrides damage from another fighter
+    * @param damage the damage being dealt
+    */
     @Override void takeDamage(int damage) {
         if(this.fly) {
             damage = damage / 2;
@@ -42,11 +64,20 @@ public class Duelist extends Hero {
         }
     }
 
+    /**
+    * Creates a string describe the fighter
+    * @return the string created
+    */
     @Override
     public String toString() {
         return (getName() + " is a dangerous Hero that deals a lot of damage.");
     }
 
+    /**
+    * Checks if two Duelists are the same
+    * @param obj the object to be compared to
+    * @return true if they are the same, false if not
+    */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -83,6 +114,10 @@ public class Duelist extends Hero {
         return true;
     }
 
+    /**
+    * Creates a unique number for the Duelist based on its current data
+    * @return the unique number
+    */
     @Override
     public int hashCode() {
         if(this.fly) {
@@ -99,6 +134,9 @@ public class Duelist extends Hero {
         return res;
     }
 
+    /**
+    * Creates the "Duelist.CSV" file if it doesn't exist and then writes the information of the Duelist to the next line
+    */
     @Override
     public void toCsv() {
         File openFile = new File("Duelist.CSV");

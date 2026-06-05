@@ -3,6 +3,9 @@ package universe;
 import model.*;
 import java.util.Random;
 
+/**
+ * Represents a universe with fighters
+ */
 public class Universe implements Comparable<Universe>, Configurable, Playable {
 
     private String uid;
@@ -14,27 +17,46 @@ public class Universe implements Comparable<Universe>, Configurable, Playable {
     private Vanguard v2;
     private Arena arena;
 
+    /**
+     * Creates and runs the universe simulation
+     */
     public Universe() {
         generateID();
         configureRandom();
         play();
     }
 
+    /**
+     * Creates an ID for the universe
+     * @returns the ID
+     */
     public String generateID() {
         Random r = new Random();
         this.uid = "U" + String.valueOf(100000 + r.nextInt(899999));
         return "Universe ID: " + this.uid;
     }
 
+    /**
+     * Gets the ID of a universe
+     * @return the ID
+     */
     public String getID() {
         return this.uid; }
 
+     /**
+     * Compares two universes to each other
+     * @param other the other universe
+     * @return 0 if the ID is the same, the difference if not
+     */
     @Override
     public int compareTo(Universe other) {
         int compareID = this.getID().compareTo(other.getID());
         return compareID;
     }
 
+    /**
+     * Creates the random fighters for the universe
+     */
     @Override
     public void configureRandom() {
         Random r = new Random();
@@ -61,6 +83,9 @@ public class Universe implements Comparable<Universe>, Configurable, Playable {
         arena = new Arena(percentColor, percentColor);
     }
 
+    /**
+     * Runs the battle simulation for the universe
+     */
     @Override
     public void play() {
         System.out.println("Playing universe " + getID());
@@ -82,6 +107,11 @@ public class Universe implements Comparable<Universe>, Configurable, Playable {
         arena.increaseBlue(50);
     }
 
+    /**
+     * Compares two universes
+     * @param obj the other universe
+     * @return true if the same, false if not
+     */
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Universe)) {
@@ -90,6 +120,10 @@ public class Universe implements Comparable<Universe>, Configurable, Playable {
         return this.hashCode() == obj.hashCode();
     }
 
+    /**
+     * Creates a unique number for the Strategist based on its current data
+     * @return the unique number
+     */
     @Override
     public int hashCode() {
         int res = arena.hashCode();
