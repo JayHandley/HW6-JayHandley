@@ -1,11 +1,12 @@
 package model;
 
 import datastore.*;
+import registry.Copyable;
 
 /**
  * Represents a hero
  */
-public abstract class Hero implements CSVStorable {
+public abstract class Hero<T> implements CSVStorable, Copyable<T> {
 
     final String name;
     final String team;
@@ -62,5 +63,14 @@ public abstract class Hero implements CSVStorable {
     */
     void takeDamage(int damage) {
         System.out.println("Took " + damage + " damage.");
+    }
+
+    /**
+     *
+     */
+    @Override
+    public T copy() {
+        element T = new Hero(this.getName(), this.getTeam(), this.getMaxHealth());
+        return (T);
     }
 }

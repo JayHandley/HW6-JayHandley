@@ -1,11 +1,9 @@
 package universe;
 
-import model.*;
-
 public interface Playable {
 
     /**
-     * For running the battle simulation of a universe
+     * For running the battle simulation of a src.universe
      */
     void play();
 

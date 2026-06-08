@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertion.assertNotNull;
 import static org.junit.jupiter.api.Assertion.assertNull;
 import static org.junit.jupiter.api.Assertion.assertThrows;
 
-import list.*;
+import a.list.*;
 
 public class ListTests {
 

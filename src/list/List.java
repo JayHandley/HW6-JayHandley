@@ -1,6 +1,5 @@
 package list;
-
-import universe.Universe;
+import java.util.Comparator;
 
 /**
  * For creating different commands to edit lists with.
@@ -70,4 +69,20 @@ public interface List<T extends Comparable<T>> {
     * @return the index of the element. Is 0 if not on the LinkedList
     */
     int indexOf(T element);
+
+    /**
+     * Sorts the list with mergesort
+     */
+    void sort();
+
+    /**
+     * Sorts the list with mergesort based on a comparator
+     * @param comparator used to sort
+     */
+    void sort(Comparator<T> comparator);
+
+    /**
+     * Interweaves the first half of the list with the second half
+     */
+    void weave();
 }

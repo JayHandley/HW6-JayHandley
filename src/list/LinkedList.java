@@ -1,7 +1,9 @@
 package list;
 
+import java.util.Comparator;
+
 /**
- * For creating LinkedLists using comparable and list
+ * For creating LinkedLists using comparable and src.list
  */
 public class LinkedList<T extends Comparable<T>> implements List<T> {
 
@@ -41,8 +43,8 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
  }
 
  /**
-  * Overrides toString to give useful information for testing list commands
-  * @return the list data, size, head, and tail.
+  * Overrides toString to give useful information for testing src.list commands
+  * @return the src.list data, size, head, and tail.
   */
  @Override
  public String toString() {
@@ -67,6 +69,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
  private int size;
  private Node<T> head;
  private Node<T> tail;
+ private Comparator<T> comp;
 
  /**
   * For creating a new blank LinkedList
@@ -75,6 +78,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
   this.size = 0;
   head = new Node<T>();
   tail = head;
+  this.comp = null;
  }
 
  /**
@@ -276,6 +280,145 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
   head.next = null;
   tail = head;
   size = 0;
+ }
+
+ /**
+  * Sorts the list with mergesort and corrects head and tail
+  */
+ @Override
+ public void sort() {
+  head.next = mergeSort(head.next);
+
+  Node<T> cur = head;
+  while (cur.next != null) {
+   cur = cur.next;
+  }
+  tail = cur;
+ }
+
+ /**
+  * mergesort for sort()
+  * @param node the headNode (if started) or middleNode (if recursived)
+  * @return the merge-sorted list
+  */
+ private Node<T> mergeSort(Node<T> node) {
+  // base
+  if (node == null || node.next == null) {
+   return node;
+  }
+
+  Node<T> middleNode = findMiddle(node);
+  Node<T> firstRightNode = middleNode.next;
+  middleNode.next = null;
+
+  // recursion
+  Node<T> left = mergeSort(node);
+  Node<T> right = mergeSort(firstRightNode);
+
+  return merge(left, right);
+
+ }
+
+ /**
+  * merges two nodes or lists and returns to mergesort
+  * @param left the left node or list to merge
+  * @param right the right node or list to merge
+  * @return the sorted list
+  */
+ private Node<T> merge(Node<T> left, Node<T> right) {
+
+  Node<T> dummy = new Node<>();
+  Node<T> mergeTail = dummy;
+
+  while (left != null && right != null) {
+   if (this.comp == null) {
+    if (left.data.compareTo(right.data) <= 0) {
+     mergeTail.next = left;
+     left = left.next;
+    } else {
+     mergeTail.next = right;
+     right = right.next;
+    }
+   } else {
+    if (this.comp.compare(left.data, right.data) <= 0) {
+     mergeTail.next = left;
+     left = left.next;
+    } else {
+     mergeTail.next = right;
+     right = right.next;
+    }
+   }
+   mergeTail = mergeTail.next;
+  }
+
+  if (left != null) {
+   mergeTail.next = left;
+  } else if (right != null) {
+   mergeTail.next = right;
+  }
+
+  return dummy.next;
+ }
+
+ /**
+  * Finds the middle node in a linked list for mergesort
+  * @param node the headNode
+  * @return the middle node
+  */
+ private Node<T> findMiddle(Node<T> node) {
+
+  Node<T> slow = node;
+  Node<T> fast = node;
+
+  while (fast.next != null && fast.next.next != null) {
+   slow = slow.next;
+   fast = fast.next.next;
+  }
+  return slow;
+ }
+
+ /**
+  * Sorts the list with mergesort based on a comparator
+  * @param comparator used to sort
+  */
+ @Override
+ public void sort(Comparator<T> comp) {
+  if(!(comp == "nameComparator" || comp == "healthComparator")) {
+   throw new IllegalArgumentException("Must use a legal comparator (nameComparator or healthComparator)");
+  }
+  this.comp = comp;
+  sort();
+  this.comp = null;
+ }
+
+ /**
+  * Interweaves the first half of the list with the second half
+  */
+ @Override
+ public void weave() {
+  Node<T> cur = head;
+  Node<T> dummyNode = head;
+  length = 1;
+
+  while (cur.next != null) {
+   length++;
+   cur = cur.next;
+  }
+  middle = length/2;
+  if(length % 2 = 1) { middle++; }
+
+  for (i = 1; i <= length; i++) {
+   if(i % 2 = 1) {
+    dummyNode = head;
+    remove(1);
+    add(dummyNode);
+    middle--;
+   } else {
+    dummyNode = get(middle);
+    remove(middle);
+    add(dummyNode);
+   }
+  }
  }
 
 }

@@ -4,7 +4,7 @@ import model.*;
 import java.util.Random;
 
 /**
- * Represents a universe with fighters
+ * Represents a src.universe with fighters
  */
 public class Universe implements Comparable<Universe>, Configurable, Playable {
 
@@ -18,7 +18,7 @@ public class Universe implements Comparable<Universe>, Configurable, Playable {
     private Arena arena;
 
     /**
-     * Creates and runs the universe simulation
+     * Creates and runs the src.universe simulation
      */
     public Universe() {
         generateID();
@@ -27,7 +27,7 @@ public class Universe implements Comparable<Universe>, Configurable, Playable {
     }
 
     /**
-     * Creates an ID for the universe
+     * Creates an ID for the src.universe
      * @returns the ID
      */
     public String generateID() {
@@ -37,7 +37,7 @@ public class Universe implements Comparable<Universe>, Configurable, Playable {
     }
 
     /**
-     * Gets the ID of a universe
+     * Gets the ID of a src.universe
      * @return the ID
      */
     public String getID() {
@@ -45,7 +45,7 @@ public class Universe implements Comparable<Universe>, Configurable, Playable {
 
      /**
      * Compares two universes to each other
-     * @param other the other universe
+     * @param other the other src.universe
      * @return 0 if the ID is the same, the difference if not
      */
     @Override
@@ -55,7 +55,7 @@ public class Universe implements Comparable<Universe>, Configurable, Playable {
     }
 
     /**
-     * Creates the random fighters for the universe
+     * Creates the random fighters for the src.universe
      */
     @Override
     public void configureRandom() {
@@ -84,11 +84,11 @@ public class Universe implements Comparable<Universe>, Configurable, Playable {
     }
 
     /**
-     * Runs the battle simulation for the universe
+     * Runs the battle simulation for the src.universe
      */
     @Override
     public void play() {
-        System.out.println("Playing universe " + getID());
+        System.out.println("Playing src.universe " + getID());
         d1.fly();
         d2.fly();
         d2.attack(v1);
@@ -109,7 +109,7 @@ public class Universe implements Comparable<Universe>, Configurable, Playable {
 
     /**
      * Compares two universes
-     * @param obj the other universe
+     * @param obj the other src.universe
      * @return true if the same, false if not
      */
     @Override
